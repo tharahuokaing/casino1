@@ -51,9 +51,9 @@
         </div>
 
         <div class="jackpot-banner">
-            <div style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">SOMA'S LEGACY JACKPOT</div>
+            <div style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">White Hat Hacker's LEGACY JACKPOT</div>
             <div id="jackpot-val" class="jackpot-amount">$1,250,850.00</div>
-        </div>
+     </div>
     `;
     document.body.appendChild(uiOverlay);
 
@@ -71,5 +71,6 @@
             new Audio('https://www.soundjay.com/buttons/button-35.mp3').play().catch(()=>{});
         });
     });
+
 
 })();

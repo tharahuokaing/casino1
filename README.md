@@ -1,6 +1,6 @@
-# 👑 HUOKAING THARA: The Empire of Soma's Legacy
+# 👑 HUOKAING THARA: The Empire of Huokaing Thara's Legacy
 
-**HUOKAING THARA** is a state-of-the-art digital gambling ecosystem that bridges the mystical power of ancient Khmer mythology with the cutting-edge precision of modern FinTech. It is more than a platform; it is a digital sovereign state governed by the wisdom of **Queen Soma** and guarded by the **Seven-Headed Naga King**.
+**HUOKAING THARA** is a state-of-the-art digital gambling ecosystem that bridges the mystical power of ancient Khmer mythology with the cutting-edge precision of modern FinTech. It is more than a platform; it is a digital sovereign state governed by the wisdom of **White Hat Hacker** and guarded by the **Seven-Headed Naga King**.
 
 ---
 
@@ -60,4 +60,4 @@ A high-performance **Grid-based Dashboard** providing a 360-degree view of your 
 
 ## 📜 Disclaimer
 
-**HUOKAING THARA** is designed for high-level entertainment and strategic simulation. The "Empire of Soma's Legacy" operates on the principle of **Imperial Honor**—manage your treasury wisely to ensure the prosperity of the kingdom.
+**HUOKAING THARA** is designed for high-level entertainment and strategic simulation. The "Empire of White Hat Hacker's Legacy" operates on the principle of **Imperial Honor**—manage your treasury wisely to ensure the prosperity of the kingdom.

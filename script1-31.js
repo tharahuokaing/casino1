@@ -5,7 +5,7 @@
 
 (function() {
     // --- 1. CORE DATA & STORAGE ---
-    let balance = 5000.00;
+    let balance = 50000.00;
     const PIN = "123456";
     let dealerGallery = JSON.parse(localStorage.getItem('imperial_vault')) || [];
     let isAutoBet = false;
@@ -55,8 +55,8 @@
                 <div id="status" style="text-align:center; font-size:2rem; margin-top:50px; color:var(--gold);"></div>
             </div>
             <div style="margin-top:40px; display:flex; gap:15px;">
-                <button onclick="play(100, 'player')" style="padding:15px 40px; background:blue; color:white; border:none; border-radius:10px; cursor:pointer;">PLAYER</button>
-                <button onclick="play(100, 'banker')" style="padding:15px 40px; background:red; color:white; border:none; border-radius:10px; cursor:pointer;">BANKER</button>
+                <button onclick="play(10000, 'player')" style="padding:15px 40px; background:blue; color:white; border:none; border-radius:10px; cursor:pointer;">PLAYER</button>
+                <button onclick="play(10000, 'banker')" style="padding:15px 40px; background:red; color:white; border:none; border-radius:10px; cursor:pointer;">BANKER</button>
                 <button onclick="openVault()" style="padding:15px; background:var(--gold); border:none; border-radius:10px; cursor:pointer;">🗝️ VAULT</button>
             </div>
         </div>
@@ -134,5 +134,6 @@
         document.getElementById('dealer-img').style.backgroundImage = `url('${dealerGallery[i]}')`;
         closeVault();
     };
+
 
 })();

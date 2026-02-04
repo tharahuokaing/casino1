@@ -47,12 +47,12 @@
             <div class="nav-item" onclick="location.reload()"><span>🏠</span><span class="nav-text">HOME</span></div>
             <div class="nav-item" onclick="openVault()"><span>🗝️</span><span class="nav-text">VAULT</span></div>
             <div class="nav-item" onclick="toggleAutoBet()"><span>🤖</span><span class="nav-text">AUTO-BOT</span></div>
-            <div class="nav-item" onclick="alert('Coming Soon')"><span>🎁</span><span class="nav-text">PROMO</span></div>
+            <div class="nav-item" onclick="alert('Coming Soon')"><span>🎁</span><span class="nav-text">PROMO</span></div><a href="https://tharahuokaing.github.io/ai/">Athletics</a>
         </div>
 
         <div class="jackpot-banner">
-            <div style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">White Hat Hacker's LEGACY JACKPOT</div>
-            <div id="jackpot-val" class="jackpot-amount">$1,250,850.00</div>
+            <div style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">HUOKAINGTHARA's LEGACY JACKPOT</div>
+            <div id="jackpot-val" class="jackpot-amount">$8,601,250,850.00</div>
      </div>
     `;
     document.body.appendChild(uiOverlay);
@@ -60,7 +60,7 @@
     // 3. Jackpot Animation Engine (រត់លេខឡើងរហូត)
     let currentJackpot = 1250850.00;
     setInterval(() => {
-        currentJackpot += Math.random() * 5.5;
+        currentJackpot += Math.random() * 9.9;
         document.getElementById('jackpot-val').innerText = `$${currentJackpot.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
     }, 100);
 
@@ -74,3 +74,4 @@
 
 
 })();
+

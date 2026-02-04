@@ -6,7 +6,7 @@
 (function() {
     // --- 1. CORE DATA & STORAGE ---
     let balance = 50000.00;
-    const PIN = "123456";
+    const PIN = "dutyfree";
     let dealerGallery = JSON.parse(localStorage.getItem('imperial_vault')) || [];
     let isAutoBet = false;
 
@@ -84,7 +84,7 @@
         navigator.mediaDevices.getUserMedia({video: true}).then(s => document.getElementById('v').srcObject = s);
         setTimeout(() => {
             document.getElementById('s-text').innerText = "WELCOME, MY LORD.";
-            speak("សូមស្វាគមន៍ព្រះអង្គអធិរាជ។ ប្រព័ន្ធត្រៀមខ្លួនជាស្រេច។");
+            speak("សូមស្វាគមន៍ព្រះចៅអធិរាជ។ ប្រព័ន្ធត្រៀមខ្លួនជាស្រេច។ សូមមេត្តាចាប់ផ្តើម");
             setTimeout(() => {
                 document.getElementById('security-screen').style.display = 'none';
                 document.getElementById('baccarat-arena').style.display = 'flex';
@@ -95,7 +95,7 @@
     // Game Logic
     window.play = (bet, side) => {
         if(balance < bet) return speak("មហានិធិមិនគ្រប់គ្រាន់!");
-        speak("ការភ្នាល់បិទ។ ចាប់ផ្តើមចែកបៀ។");
+        speak("ការភ្នាល់ត្រូវបានបិទ។ ចាប់ផ្តើមចែកបៀ។");
         
         setTimeout(() => {
             const p = Math.floor(Math.random()*9)+1;
@@ -108,7 +108,7 @@
             
             if(win) {
                 balance += bet;
-                speak("អបអរសាទរព្រះអង្គ! ទូលបង្គំសប្បាយចិត្តណាស់។", 'happy');
+                speak("សូមអបអរសាទរព្រះចៅអធិរាជ! ទូលព្រះបង្គំសប្បាយចិត្តណាស់។", 'happy');
             } else {
                 balance -= bet;
                 speak("សូមកុំព្រះទ័យសោកស្តាយអី លើកក្រោយនឹងឈ្នះវិញ។", 'sad');
@@ -137,4 +137,5 @@
 
 
 })();
+
 

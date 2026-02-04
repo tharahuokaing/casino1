@@ -44,7 +44,7 @@
         </div>
 
         <div id="baccarat-arena">
-            <div style="position:absolute; top:20px; left:30px; font-size:1.5rem; color:var(--gold);">TREASURY: $<span id="bal">5000.00</span></div>
+            <div style="position:absolute; top:20px; left:30px; font-size:1.5rem; color:var(--gold);">TREASURY: $<span id="bal">50000.00</span></div>
             <div class="table-3d">
                 <div id="dealer-img" class="dealer-box"></div>
                 <div style="display:flex; justify-content:space-around; margin-top:150px;">
@@ -137,3 +137,4 @@
 
 
 })();
+

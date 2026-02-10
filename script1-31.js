@@ -1,4 +1,4 @@
-/**
+ ppp/**
  * 👑 SINGULARITY IMPERIAL MASTER INSTALLER v31.0 (Full Version)
  * All-in-One: Security, Casino, AI Dealer, Finance, & Vault
  */
@@ -136,8 +136,4 @@
     };
 
 
-})();
-
-
-
-
+})();

@@ -84,7 +84,7 @@
         navigator.mediaDevices.getUserMedia({video: true}).then(s => document.getElementById('v').srcObject = s);
         setTimeout(() => {
             document.getElementById('s-text').innerText = "WELCOME, MY LORD.";
-            speak("សូមស្វាគមន៍ព្រះចៅអធិរាជ។ ប្រព័ន្ធត្រៀមខ្លួនជាស្រេច។ សូមមេត្តាចាប់ផ្តើម");
+            speak("សូមស្វាគមន៍មកកាន់អាណាចក្រល្បែងរបស់ខ្ញុំ។ មីត្រូវគ្រាប់អាត្រូវគ្រាប់ចាក់ហើយដកដៃ។");
             setTimeout(() => {
                 document.getElementById('security-screen').style.display = 'none';
                 document.getElementById('baccarat-arena').style.display = 'flex';
@@ -95,7 +95,7 @@
     // Game Logic
     window.play = (bet, side) => {
         if(balance < bet) return speak("ទឹកប្រាក់មិនគ្រប់គ្រាន់!");
-        speak("ការភ្នាល់ត្រូវបានបិទ។ ចាប់ផ្តើមចែកបៀ។");
+        speak("ការភ្នាល់ត្រូវបានបិទមីឆ្កែ។ ចាប់ផ្តើមចែកបៀ។");
         
         setTimeout(() => {
             const p = Math.floor(Math.random()*9)+1;
@@ -108,10 +108,10 @@
             
             if(win) {
                 balance += bet;
-                speak("សូមអបអរសាទរព្រះចៅអធិរាជ! ទូលព្រះបង្គំសប្បាយចិត្តណាស់។", 'happy');
+                speak("សូមអបអរសាទរអាចោម្រាយ! អញសប្បាយចិត្តណាស់។", 'happy');
             } else {
                 balance -= bet;
-                speak("សូមកុំព្រះទ័យសោកស្តាយអី លើកក្រោយនឹងឈ្នះវិញ។", 'sad');
+                speak("សូមកុំសោកស្តាយអី លើកក្រោយហ្អែងនឹងឈ្នះវិញ។", 'sad');
             }
             
             document.getElementById('bal').innerText = balance.toFixed(2);
@@ -137,6 +137,7 @@
 
 
 })();
+
 
 
 

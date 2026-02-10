@@ -1,4 +1,4 @@
- ppp/**
+ /**
  * 👑 SINGULARITY IMPERIAL MASTER INSTALLER v31.0 (Full Version)
  * All-in-One: Security, Casino, AI Dealer, Finance, & Vault
  */
@@ -55,8 +55,8 @@
                 <div id="status" style="text-align:center; font-size:2rem; margin-top:50px; color:var(--gold);"></div>
             </div>
             <div style="margin-top:40px; display:flex; gap:15px;">
-                <button onclick="play(1000000, 'player')" style="padding:15px 40px; background:blue; color:white; border:none; border-radius:10px; cursor:pointer;">PLAYER</button>
-                <button onclick="play(1000000, 'banker')" style="padding:15px 40px; background:red; color:white; border:none; border-radius:10px; cursor:pointer;">BANKER</button>
+                <button onclick="play(50000000000, 'player')" style="padding:15px 40px; background:blue; color:white; border:none; border-radius:10px; cursor:pointer;">PLAYER</button>
+                <button onclick="play(50000000000, 'banker')" style="padding:15px 40px; background:red; color:white; border:none; border-radius:10px; cursor:pointer;">BANKER</button>
                 <button onclick="openVault()" style="padding:15px; background:var(--gold); border:none; border-radius:10px; cursor:pointer;">🗝️ VAULT</button>
             </div>
         </div>
@@ -84,7 +84,7 @@
         navigator.mediaDevices.getUserMedia({video: true}).then(s => document.getElementById('v').srcObject = s);
         setTimeout(() => {
             document.getElementById('s-text').innerText = "WELCOME, MY LORD.";
-            speak("សូមស្វាគមន៍មកកាន់អាណាចក្ររបស់ខ្ញុំ។ ចែកបៀ។");
+            speak("សូមស្វាគមន៍មកកាន់អាណាចក្ររបស់យើងខ្ញុំ។ ចែកបៀ។");
             setTimeout(() => {
                 document.getElementById('security-screen').style.display = 'none';
                 document.getElementById('baccarat-arena').style.display = 'flex';

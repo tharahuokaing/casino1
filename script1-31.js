@@ -5,7 +5,7 @@
 
 (function() {
     // --- 1. CORE DATA & STORAGE ---
-    let balance = 5000000.00;
+    let balance = 50000000000.00;
     const PIN = "dutyfree";
     let dealerGallery = JSON.parse(localStorage.getItem('imperial_vault')) || [];
     let isAutoBet = false;
@@ -44,7 +44,7 @@
         </div>
 
         <div id="baccarat-arena">
-            <div style="position:absolute; top:20px; left:30px; font-size:1.5rem; color:var(--gold);">TREASURY: $<span id="bal">5000000.00</span></div>
+            <div style="position:absolute; top:20px; left:30px; font-size:1.5rem; color:var(--gold);">TREASURY: $<span id="bal">50000000000.00</span></div>
             <div class="table-3d">
                 <div id="dealer-img" class="dealer-box"></div>
                 <div style="display:flex; justify-content:space-around; margin-top:150px;">
@@ -84,7 +84,7 @@
         navigator.mediaDevices.getUserMedia({video: true}).then(s => document.getElementById('v').srcObject = s);
         setTimeout(() => {
             document.getElementById('s-text').innerText = "WELCOME, MY LORD.";
-            speak("សូមស្វាគមន៍មកកាន់អាណាចក្រល្បែងរបស់ខ្ញុំ។ មីត្រូវគ្រាប់អាត្រូវគ្រាប់ចាក់ហើយដកដៃ។");
+            speak("សូមស្វាគមន៍មកកាន់អាណាចក្ររបស់ខ្ញុំ។ ចែកបៀ។");
             setTimeout(() => {
                 document.getElementById('security-screen').style.display = 'none';
                 document.getElementById('baccarat-arena').style.display = 'flex';
@@ -95,7 +95,7 @@
     // Game Logic
     window.play = (bet, side) => {
         if(balance < bet) return speak("ទឹកប្រាក់មិនគ្រប់គ្រាន់!");
-        speak("ការភ្នាល់ត្រូវបានបិទមីឆ្កែ។ ចាប់ផ្តើមចែកបៀ។");
+        speak("ការភ្នាល់ត្រូវបានបិទ។ ចាប់ផ្តើមចែកបៀ។");
         
         setTimeout(() => {
             const p = Math.floor(Math.random()*9)+1;
@@ -108,10 +108,10 @@
             
             if(win) {
                 balance += bet;
-                speak("សូមអបអរសាទរអាចោម្រាយ! អញសប្បាយចិត្តណាស់។", 'happy');
+                speak("សូមអបអរសាទ! ខ្ញុំសប្បាយចិត្តណាស់។", 'happy');
             } else {
                 balance -= bet;
-                speak("សូមកុំសោកស្តាយអី លើកក្រោយហ្អែងនឹងឈ្នះវិញ។", 'sad');
+                speak("សូមកុំសោកស្តាយអី លើកក្រោយនឹងឈ្នះវិញ។", 'sad');
             }
             
             document.getElementById('bal').innerText = balance.toFixed(2);
@@ -136,4 +136,4 @@
     };
 
 
-})();
+})();

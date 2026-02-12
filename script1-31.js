@@ -5,7 +5,7 @@
 
 (function() {
     // --- 1. CORE DATA & STORAGE ---
-    let balance = 50000000000.00;
+    let balance = 5000000.00;
     const PIN = "dutyfree";
     let dealerGallery = JSON.parse(localStorage.getItem('imperial_vault')) || [];
     let isAutoBet = false;
@@ -44,7 +44,7 @@
         </div>
 
         <div id="baccarat-arena">
-            <div style="position:absolute; top:20px; left:30px; font-size:1.5rem; color:var(--gold);">TREASURY: $<span id="bal">50000000000.00</span></div>
+            <div style="position:absolute; top:20px; left:30px; font-size:1.5rem; color:var(--gold);">TREASURY: $<span id="bal">5000000.00</span></div>
             <div class="table-3d">
                 <div id="dealer-img" class="dealer-box"></div>
                 <div style="display:flex; justify-content:space-around; margin-top:150px;">
@@ -55,8 +55,8 @@
                 <div id="status" style="text-align:center; font-size:2rem; margin-top:50px; color:var(--gold);"></div>
             </div>
             <div style="margin-top:40px; display:flex; gap:15px;">
-                <button onclick="play(50000000000, 'player')" style="padding:15px 40px; background:blue; color:white; border:none; border-radius:10px; cursor:pointer;">PLAYER</button>
-                <button onclick="play(50000000000, 'banker')" style="padding:15px 40px; background:red; color:white; border:none; border-radius:10px; cursor:pointer;">BANKER</button>
+                <button onclick="play(5000000, 'player')" style="padding:15px 40px; background:blue; color:white; border:none; border-radius:10px; cursor:pointer;">PLAYER</button>
+                <button onclick="play(5000000, 'banker')" style="padding:15px 40px; background:red; color:white; border:none; border-radius:10px; cursor:pointer;">BANKER</button>
                 <button onclick="openVault()" style="padding:15px; background:var(--gold); border:none; border-radius:10px; cursor:pointer;">🗝️ VAULT</button>
             </div>
         </div>
@@ -94,8 +94,8 @@
 
     // Game Logic
     window.play = (bet, side) => {
-        if(balance < bet) return speak("ទឹកប្រាក់មិនគ្រប់គ្រាន់!");
-        speak("ការភ្នាល់ត្រូវបានបិទ។ ចាប់ផ្តើមចែកបៀ។");
+        if(balance < bet) return speak("ទឹកប្រាក់របស់អ្នកមិនគ្រប់គ្រាន់!");
+        speak("ការភ្នាល់ត្រូវបានបិទ។ ចាប់ផ្តើមចែកបៀរ។");
         
         setTimeout(() => {
             const p = Math.floor(Math.random()*9)+1;
@@ -111,7 +111,7 @@
                 speak("សូមអបអរសាទ! ខ្ញុំសប្បាយចិត្តណាស់។", 'happy');
             } else {
                 balance -= bet;
-                speak("សូមកុំសោកស្តាយអី លើកក្រោយនឹងឈ្នះវិញ។", 'sad');
+                speak("សូមមេត្តាកុំសោកស្តាយអី លើកក្រោយនឹងឈ្នះវិញហើយបង។", 'sad');
             }
             
             document.getElementById('bal').innerText = balance.toFixed(2);

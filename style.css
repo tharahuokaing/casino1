@@ -1,0 +1,61 @@
+:root {
+    --gold: #d4af37;
+    --cyan: #00f3ff;
+    --holo-bg: rgba(0, 243, 255, 0.05);
+    --glass: rgba(10, 25, 41, 0.7); /* Darker glass for better text legibility */
+    --border-glow: rgba(0, 243, 255, 0.4);
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #020508;
+    color: white;
+    font-family: 'Orbitron', 'Segoe UI', sans-serif; /* Recommended futuristic font */
+    overflow: hidden;
+    height: 100%;
+    user-select: none; /* Prevents accidental text highlighting during clicks */
+}
+
+/* 1. LAYER FIX: The Background Grid */
+.hologram-grid {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(var(--holo-bg) 1px, transparent 1px),
+        linear-gradient(90deg, var(--holo-bg) 1px, transparent 1px);
+    background-size: 40px 40px;
+    transform: perspective(600px) rotateX(60deg);
+    z-index: 0; /* Background layer */
+    animation: grid-move 20s linear infinite;
+    pointer-events: none; /* Clicks pass through to elements below */
+}
+
+/* 2. LAYER FIX: The Game Canvas */
+#imperial-main-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; 
+    pointer-events: none; /* Vital: Prevents the canvas from blocking button clicks */
+}
+
+/* 3. HUD REVISION: Glassmorphism & Depth */
+.hud-top, .hud-bottom {
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    padding: 15px 25px;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-glow);
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.15), inset 0 0 10px rgba(0, 243, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z

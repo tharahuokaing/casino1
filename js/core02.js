@@ -1,71 +1,97 @@
 /**
- * 🛡️ HUOKAING THARA: CORE-2 (SECURITY)
- * Feature: Encrypted State Management & Anti-Tamper
- * Version: 4.0.0
+ * 🛡️ HUOKAING THARA: CORE-02 (ULTRA-SECURITY)
+ * Feature: Dead Man's Switch, Two-Man Integrity (TMI), & Panic Mode
+ * Version: 5.0.0
  */
-
 (function(Imperial) {
-    // Private variables (encapsulated, cannot be accessed via console)
-    let _vaultBalance = 0;
     let _checksum = "";
+    let _panicActive = false;
+    let _deadManTimer = null;
+    
+    // TMI Requirements: Both must be true to authorize high-value transactions
+    const _tmiStatus = {
+        officerAlpha: false, // Set via PIN 8888 (Core-10)
+        officerBeta: false   // Set via Hardware/System Handshake
+    };
 
     const SecurityModule = {
-        /**
-         * Initialize the vault with a secure handshake
-         */
-        init: function(initialAmount) {
-            _vaultBalance = parseFloat(initialAmount) || 0;
+        init: function() {
+            this.bootVirtualCores();
+            this.startDeadManSwitch();
             this.generateChecksum();
-            Imperial.Kernel.registerModule("core2_security");
+            
+            Imperial.Kernel.registerModule("core02_security", this);
+            Imperial.Logger.log("SECURITY", "TMI Protocols & Dead Man Switch Active.");
         },
 
         /**
-         * Simple hashing to verify data integrity
+         * 🚨 PANIC BUTTON / EMERGENCY LOCK
          */
+        triggerPanic: function(reason) {
+            _panicActive = true;
+            document.body.style.filter = "sepia(1) saturate(5) hue-rotate(-50deg)";
+            document.body.style.pointerEvents = "none"; // Freeze UI
+            
+            Imperial.Logger.log("CRITICAL", `PANIC MODE ACTIVATED: ${reason}`);
+            Imperial.Events.emit('SYSTEM_PANIC', { reason: reason });
+            
+            alert("🛑 IMPERIAL LOCKDOWN: " + reason);
+        },
+
+        /**
+         * 💀 DEAD MAN'S SWITCH
+         * If no interaction occurs within 5 minutes, the system locks.
+         */
+        startDeadManSwitch: function() {
+            const resetTimer = () => {
+                if (_panicActive) return;
+                clearTimeout(_deadManTimer);
+                _deadManTimer = setTimeout(() => {
+                    this.triggerPanic("DEAD MAN SWITCH EXPIRED");
+                }, 300000); // 5 Minutes
+            };
+
+            window.addEventListener('mousemove', resetTimer);
+            window.addEventListener('keypress', resetTimer);
+            resetTimer();
+        },
+
+        /**
+         * 👥 TWO-MAN INTEGRITY (TMI)
+         * Authorizes access only when both "keys" are turned.
+         */
+        authorizeTMI: function(officer) {
+            if (officer === 'ALPHA') _tmiStatus.officerAlpha = true;
+            if (officer === 'BETA') _tmiStatus.officerBeta = true;
+
+            if (_tmiStatus.officerAlpha && _tmiStatus.officerBeta) {
+                Imperial.Notify.send("SECURITY", "Two-Man Integrity Verified. Vault Unlocked.", "success");
+                return true;
+            }
+            return false;
+        },
+
+        bootVirtualCores: function() {
+            for (let i = 3; i <= 100; i++) {
+                if ([10, 11, 12].includes(i)) continue;
+                Imperial.Kernel.registerModule(`core${i.toString().padStart(2, '0')}`, { status: "VIRTUAL" });
+            }
+        },
+
         generateChecksum: function() {
-            _checksum = btoa(`salt_${_vaultBalance}_${Imperial.Kernel.startTime}`);
+            const moduleCount = Object.keys(Imperial.Kernel.getModules()).length;
+            _checksum = btoa(`imperial_v5_${moduleCount}_${_panicActive}`);
         },
 
-        /**
-         * validate: Checks if the balance has been modified by unauthorized scripts
-         */
-        validate: function() {
-            const verify = btoa(`salt_${_vaultBalance}_${Imperial.Kernel.startTime}`);
+        validateSystem: function() {
+            if (_panicActive) return false;
+            const currentCount = Object.keys(Imperial.Kernel.getModules()).length;
+            const verify = btoa(`imperial_v5_${currentCount}_false`);
             return verify === _checksum;
-        },
-
-        /**
-         * updateBalance: The only authorized way to change the vault
-         */
-        updateBalance: function(amount, isAbsolute = false) {
-            if (!this.validate()) {
-                console.error("🛑 SECURITY BREACH: Vault integrity compromised.");
-                return false;
-            }
-
-            if (isAbsolute) {
-                _vaultBalance = amount;
-            } else {
-                _vaultBalance += amount;
-            }
-
-            this.generateChecksum();
-            this.syncUI();
-            return true;
-        },
-
-        getBalance: function() {
-            return this.validate() ? _vaultBalance : 0;
-        },
-
-        syncUI: function() {
-            // Placeholder for UI hooks to be defined in core15+
-            const display = document.getElementById('balanceDisplay');
-            if (display) display.innerText = `$${_vaultBalance.toLocaleString()}`;
         }
     };
 
-    // Attach to Global Namespace
     Imperial.Security = SecurityModule;
+    SecurityModule.init();
 
 })(window.Imperial);

@@ -1,61 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap');
+
 :root {
     --gold: #d4af37;
     --cyan: #00f3ff;
-    --holo-bg: rgba(0, 243, 255, 0.05);
-    --glass: rgba(10, 25, 41, 0.7); /* Darker glass for better text legibility */
-    --border-glow: rgba(0, 243, 255, 0.4);
+    --deep-blue: #020b16;
+    --holo-glow: rgba(0, 243, 255, 0.3);
+    --glass: rgba(0, 20, 30, 0.8);
 }
 
 body, html {
     margin: 0;
     padding: 0;
-    background-color: #020508;
-    color: white;
-    font-family: 'Orbitron', 'Segoe UI', sans-serif; /* Recommended futuristic font */
+    background-color: var(--deep-blue);
+    color: var(--cyan);
+    font-family: 'Orbitron', sans-serif;
     overflow: hidden;
     height: 100%;
-    user-select: none; /* Prevents accidental text highlighting during clicks */
+    /* Subtle CRT flicker effect for the whole screen */
+    animation: master-flicker 0.15s infinite;
 }
 
-/* 1. LAYER FIX: The Background Grid */
+/* 1. THE 3D GROUND GRID */
 .hologram-grid {
     position: fixed;
-    top: -50%;
+    bottom: -20%;
     left: -50%;
     width: 200%;
-    height: 200%;
+    height: 100%;
     background-image: 
-        linear-gradient(var(--holo-bg) 1px, transparent 1px),
-        linear-gradient(90deg, var(--holo-bg) 1px, transparent 1px);
-    background-size: 40px 40px;
-    transform: perspective(600px) rotateX(60deg);
-    z-index: 0; /* Background layer */
-    animation: grid-move 20s linear infinite;
-    pointer-events: none; /* Clicks pass through to elements below */
+        linear-gradient(var(--holo-glow) 2px, transparent 2px),
+        linear-gradient(90deg, var(--holo-glow) 2px, transparent 2px);
+    background-size: 60px 60px;
+    transform: perspective(500px) rotateX(75deg);
+    z-index: 0;
+    animation: grid-advance 10s linear infinite;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
-/* 2. LAYER FIX: The Game Canvas */
-#imperial-main-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1; 
-    pointer-events: none; /* Vital: Prevents the canvas from blocking button clicks */
-}
-
-/* 3. HUD REVISION: Glassmorphism & Depth */
+/* 2. GLASSMORPHISM INTERFACE (HUD) */
 .hud-top, .hud-bottom {
     position: absolute;
-    width: 90%;
-    left: 5%;
-    padding: 15px 25px;
+    width: 94%;
+    left: 3%;
     background: var(--glass);
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--border-glow);
-    box-shadow: 0 0 25px rgba(0, 243, 255, 0.15), inset 0 0 10px rgba(0, 243, 255, 0.1);
+    backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 15px var(--holo-glow), inset 0 0 10px var(--holo-glow);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z
+    z-index: 100;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.hud-top { top: 20px; padding: 10px 30px; border-radius: 4px; border-bottom: 3px solid var(--cyan); }
+.hud-bottom { bottom: 20px; padding: 20px 30px; border-radius: 4px; border-top: 3px solid var(--cyan); }
+
+/* 3. THE CORE SPIN BUTTON */
+.btn-spin-main {
+    width: 120px;
+    height: 120px;
+    background: transparent;
+    border: 2px solid var(--cyan);
+    border-radius: 50%;
+    color: var(--cyan);
+    font-weight: 900;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 0 20px var(--cyan);
+    transition: 0.2s;
+    overflow: hidden;
+}
+
+/* Internal "pulsing" light for the button */
+.btn-spin-main::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    background: var(--cyan);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.3;
+    animation: pulse-ring 2s infinite;
+}
+
+.btn-spin-main:hover {
+    background: var(--cyan);
+    color: var(--deep-blue);
+    box-shadow: 0 0 40px var(--cyan);
+}
+
+/* 4. ANIMATIONS */
+@keyframes grid-advance {
+    from { background-position: 0 0; }
+    to { background-position: 0 60px; }
+}
+
+@keyframes master-flicker {
+    0% { opacity: 0.99; }
+    50% { opacity: 1; }
+    100% { opacity: 0.98; }
+}
+
+@keyframes pulse-ring {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+/* 5. TEXT GLOW */
+.glow-text {
+    text-shadow: 0 0 10px var(--cyan), 0 0 20px var(--cyan);
+    color: #fff;
+}
+
+#credit-count {
+    font-size: 1.5rem;
+    color: var(--gold);
+    text-shadow: 0 0 10px var(--gold);
+}

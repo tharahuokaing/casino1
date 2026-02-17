@@ -1,7 +1,7 @@
 /**
  * 🌉 HUOKAING THARA: UI BRIDGE (ULTRA-SECURITY EDITION)
  * Purpose: Connects UI to Core-02 TMI & Core-12 Vault
- * Version: 5.0.0
+ * Version: 5.1.0
  */
 
 (function(Imperial) {
@@ -14,38 +14,52 @@
         playerName: document.getElementById('player-name')
     };
 
-    const init = () => {
-        Imperial.Logger.log("BRIDGE", "Establishing High-Security Links...");
+    // Internal tracking for Self-Destruct protocol
+    let _securityAttempts = 0;
+    const _MAX_ATTEMPTS = 3;
 
-        // --- 1. LOGIN & PANIC (Core-10 & Core-02) ---
+    const init = () => {
+        Imperial.Logger.log("BRIDGE", "Establishing High-Security TMI Links...");
+
+        // --- 1. LOGIN & OWNER AUTH (Core-10) ---
         UI.btnSystem.addEventListener('click', () => {
-            const username = prompt("ENTER COMMANDER NAME:");
+            const username = prompt("ENTER OWNER NAME:");
             const pin = prompt("ENTER 4-DIGIT PIN (8888):");
             
             if (Imperial.Auth && Imperial.Auth.login(username, pin)) {
                 UI.playerName.innerText = username.toUpperCase();
-                UI.displayMessage.innerText = "COMMANDER AUTHENTICATED";
-                // Reset Dead Man's Switch on successful login
+                UI.displayMessage.innerText = "OWNER AUTHENTICATED";
+                // Reset Dead Man's Switch on successful owner login
                 if(Imperial.Security) Imperial.Security.resetDeadManSwitch();
             }
         });
 
-        // --- 2. SPIN WITH TMI VERIFICATION (Core-01, 02, 12) ---
+        // --- 2. SPIN WITH TMI & FAIL-SAFE (Core-01, 02, 12) ---
         UI.btnSpin.addEventListener('click', () => {
-            // First: Check basic Auth (Core-10)
+            // First: Check basic Owner Auth (Core-10)
             if (Imperial.Auth && !Imperial.Auth.hasAccess(1)) {
-                UI.displayMessage.innerText = "LOGIN REQUIRED";
+                UI.displayMessage.innerText = "OWNER LOGIN REQUIRED";
                 return;
             }
 
             // Second: Two-Man Integrity Verification (Core-02)
-            // This triggers the 8-digit backup code prompt
-            if (Imperial.Security && !Imperial.Security.authorizeVaultAccess()) {
-                UI.displayMessage.innerText = "SECURITY INTERCEPTED";
-                return;
+            // Checks the 8-digit backup code (88881688)
+            if (Imperial.Security) {
+                if (!Imperial.Security.authorizeVaultAccess()) {
+                    _securityAttempts++;
+                    UI.displayMessage.innerText = `SECURITY DENIED (${_securityAttempts}/${_MAX_ATTEMPTS})`;
+                    
+                    if (_securityAttempts >= _MAX_ATTEMPTS) {
+                        Imperial.Security.triggerPanic("SELF_DESTRUCT_INITIATED");
+                        UI.displayMessage.innerText = "VAULT WIPED";
+                    }
+                    return;
+                }
+                // Reset attempts on successful verification
+                _securityAttempts = 0;
             }
 
-            // Third: Execute Command
+            // Third: Execute Command if Security cleared
             UI.displayMessage.innerText = "ACCESSING VAULT...";
             Imperial.Events.emit('CMD_SPIN');
             
@@ -53,15 +67,16 @@
             if(Imperial.Security) Imperial.Security.resetDeadManSwitch();
         });
 
-        // --- 3. PANIC BUTTON (Hidden/Double Click System) ---
-        // Double-clicking the "System" button triggers immediate Panic Mode
+        // --- 3. EMERGENCY PANIC (Manual Trigger) ---
         UI.btnSystem.addEventListener('dblclick', () => {
-            if(Imperial.Security) Imperial.Security.triggerPanic("MANUAL_PANIC_TRIGGERED");
+            if(Imperial.Security) {
+                Imperial.Security.triggerPanic("MANUAL_PANIC_ENGAGED");
+            }
         });
 
-        // --- 4. HUD UPDATES ---
+        // --- 4. HUD & EVENT SYNC ---
         
-        // Update balance display from Core-12
+        // Listen for 230,000 credit updates from Core-12
         Imperial.Events.on('BALANCE_UPDATE', (newBalance) => {
             if (UI.displayCredits) {
                 UI.displayCredits.innerText = newBalance.toLocaleString('en-US', { 
@@ -75,14 +90,18 @@
             UI.displayMessage.innerText = `LOCKED: ${reason}`;
             UI.displayMessage.style.color = "#ff0000";
             UI.displayMessage.classList.add("panic-blink");
+            // Visually "zero out" the credits on panic
+            if (UI.displayCredits) UI.displayCredits.innerText = "0.00";
         });
 
         // Result handling
         Imperial.Events.on('SPIN_COMPLETE', (data) => {
             if (data.winAmount > 0) {
                 UI.displayMessage.innerText = `WIN: +${data.winAmount}`;
+                UI.displayMessage.style.color = "#ffd700"; // Gold color for wins
             } else {
                 UI.displayMessage.innerText = "NO RETURN";
+                UI.displayMessage.style.color = "#ffffff";
             }
         });
     };
@@ -90,7 +109,7 @@
     window.addEventListener('load', () => {
         if (window.Imperial) {
             init();
-            Imperial.Logger.log("SYSTEM", "=== SECURITY BRIDGE ONLINE ===");
+            Imperial.Logger.log("SYSTEM", "=== SECURITY BRIDGE V5.1 ONLINE ===");
         }
     });
 

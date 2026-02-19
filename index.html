@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>HUOKAING THARA | Imperial Plaza</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="imperial-theme">
     <div class="hologram-grid"></div>
@@ -41,108 +41,14 @@
         </footer>
     </main>
 
-    <script src="js/core00.js"></script>
-    <script src="js/core01.js"></script>
-    <script src="js/core02.js"></script>
-    <script src="js/core03.js"></script>
-    <script src="js/core04.js"></script>
-    <script src="js/core05.js"></script>
-    <script src="js/core06.js"></script>
-    <script src="js/core07.js"></script>
-    <script src="js/core08.js"></script>
-    <script src="js/core09.js"></script>
-    <script src="js/core10.js"></script>
-    <script src="js/core11.js"></script>
-    <script src="js/core12.js"></script>
-    <script src="js/core13.js"></script>
-    <script src="js/core14.js"></script>
-    <script src="js/core15.js"></script>
-    <script src="js/core16.js"></script>
-    <script src="js/core17.js"></script>
-    <script src="js/core18.js"></script>
-    <script src="js/core19.js"></script>
-    <script src="js/core20.js"></script>
-    <script src="js/core21.js"></script>
-    <script src="js/core22.js"></script>
-    <script src="js/core23.js"></script>
-    <script src="js/core24.js"></script>
-    <script src="js/core25.js"></script>
-    <script src="js/core26.js"></script>
-    <script src="js/core27.js"></script>
-    <script src="js/core28.js"></script>
-    <script src="js/core29.js"></script>
-    <script src="js/core30.js"></script>
-    <script src="js/core31.js"></script>
-    <script src="js/core32.js"></script>
-    <script src="js/core33.js"></script>
-    <script src="js/core34.js"></script>
-    <script src="js/core35.js"></script>
-    <script src="js/core36.js"></script>
-    <script src="js/core37.js"></script>
-    <script src="js/core38.js"></script>
-    <script src="js/core39.js"></script>
-    <script src="js/core40.js"></script>
-    <script src="js/core41.js"></script>
-    <script src="js/core42.js"></script>
-    <script src="js/core43.js"></script>
-    <script src="js/core44.js"></script>
-    <script src="js/core45.js"></script>
-    <script src="js/core46.js"></script>
-    <script src="js/core47.js"></script>
-    <script src="js/core48.js"></script>
-    <script src="js/core49.js"></script>
-    <script src="js/core50.js"></script>
-    <script src="js/core51.js"></script>
-    <script src="js/core52.js"></script>
-    <script src="js/core53.js"></script>
-    <script src="js/core54.js"></script>
-    <script src="js/core55.js"></script>
-    <script src="js/core56.js"></script>
-    <script src="js/core57.js"></script>
-    <script src="js/core58.js"></script>
-    <script src="js/core59.js"></script>
-    <script src="js/core60.js"></script>
-    <script src="js/core61.js"></script>
-    <script src="js/core62.js"></script>
-    <script src="js/core63.js"></script>
-    <script src="js/core64.js"></script>
-    <script src="js/core65.js"></script>
-    <script src="js/core66.js"></script>
-    <script src="js/core67.js"></script>
-    <script src="js/core68.js"></script>
-    <script src="js/core69.js"></script>
-    <script src="js/core70.js"></script>
-    <script src="js/core71.js"></script>
-    <script src="js/core72.js"></script>
-    <script src="js/core73.js"></script>
-    <script src="js/core74.js"></script>
-    <script src="js/core75.js"></script>
-    <script src="js/core76.js"></script>
-    <script src="js/core77.js"></script>
-    <script src="js/core78.js"></script>
-    <script src="js/core79.js"></script>
-    <script src="js/core80.js"></script>
-    <script src="js/core81.js"></script>
-    <script src="js/core82.js"></script>
-    <script src="js/core83.js"></script>
-    <script src="js/core84.js"></script>
-    <script src="js/core85.js"></script>
-    <script src="js/core86.js"></script>
-    <script src="js/core87.js"></script>
-    <script src="js/core88.js"></script>
-    <script src="js/core89.js"></script>
-    <script src="js/core90.js"></script>
-    <script src="js/core91.js"></script>
-    <script src="js/core92.js"></script>
-    <script src="js/core93.js"></script>
-    <script src="js/core94.js"></script>
-    <script src="js/core95.js"></script>
-    <script src="js/core96.js"></script>
-    <script src="js/core97.js"></script>
-    <script src="js/core98.js"></script>
-    <script src="js/core99.js"></script>
-    <script src="js/core100.js"></script>
+    <script>
+        // Dynamically load core JS scripts 00 through 100 for easier maintenance
+        for(let i = 0; i <= 100; i++) {
+            const script = document.createElement('script');
+            script.src = `js/core${i.toString().padStart(2, '0')}.js`;
+            document.body.appendChild(script);
+        }
+    </script>
     <script src="bridge.js"></script>
-
 </body>
 </html>
